@@ -1,5 +1,5 @@
 {
-  "name": "self-destruct",
+  "name": "DestructoChat",
   "version": "1.0.0",
   "description": "Self-Destructing Message App (MERN)",
   "main": "index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/d-kang/self-destruct.git"
+    "url": "git+https://github.com/d-kang/DestructoChat.git"
   },
   "keywords": [],
   "author": "",
