@@ -44,6 +44,7 @@
     "eslint-plugin-react": "^7.6.1",
     "node-sass": "^4.7.2",
     "prettier": "^1.10.2",
+    "redux-devtools": "^3.4.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0",
@@ -54,6 +55,10 @@
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
   }
 }
