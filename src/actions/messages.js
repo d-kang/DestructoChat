@@ -13,7 +13,6 @@ const promisify = () =>
 
 const loadMessagesRequest = chatroom => ({
   type: LOAD_MESSAGES_REQUEST,
-  logger: console.log('chatroom2', chatroom),
   chatroom,
 });
 const loadMessagesSuccess = payload => ({
@@ -25,7 +24,7 @@ const loadMessagesFailure = error => ({
   payload: error,
 });
 
-const loadUsersMessages = chatroom => dispatch => {
+const loadUsersMessages = (chatroom = 'lobby') => (dispatch, getState) => {
   dispatch(loadMessagesRequest(chatroom));
   return promisify(chatroom)
     .then(data => dispatch(loadMessagesSuccess(data)))
