@@ -9,7 +9,8 @@
   "scripts": {
     "build": "webpack -p --display-error-details --colors",
     "start": "node server/index.js",
-    "dev": "webpack-dev-server",
+    "node:dev": "nodemon server/index.js",
+    "webpack:dev": "webpack-dev-server",
     "postinstall": "npm run build"
   },
   "repository": {
