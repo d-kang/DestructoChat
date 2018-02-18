@@ -9,7 +9,9 @@
   "scripts": {
     "build": "webpack -p --display-error-details --colors",
     "start": "node server/index.js",
-    "node:dev": "nodemon server/index.js",
+    "node:dev": "npm run node:watch & npm run node:watchWeback",
+    "node:watch": "nodemon server/index.js",
+    "node:watchWebpack": "webpack -wd",
     "webpack:dev": "webpack-dev-server",
     "postinstall": "npm run build"
   },
@@ -53,12 +55,14 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "mongoose": "^5.0.6",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "socket.io": "^2.0.4"
   }
 }
