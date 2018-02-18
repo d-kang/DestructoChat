@@ -10,7 +10,7 @@ render(App);
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
-    const NextComponent = require('./components/App').default;
+    const NextComponent = require('./components/App').default; // eslint-disable-line global-require
     render(NextComponent);
   });
 }
