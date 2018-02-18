@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MsgItem = ({ username, message, selfDestruct, destructAt, totalMs, hasExpired, messageId }) => (
+const MsgItem = ({
+  username,
+  message,
+  selfDestruct,
+  destructAt,
+  totalMs,
+  hasExpired,
+  messageId,
+}) => (
   <div>
     <hr />
     <div>username: {username}</div>
