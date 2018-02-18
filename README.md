@@ -1,2 +1,2 @@
-# self-destruct
+# DestructoChat
 Self-Destructing Message App (MERN)
