@@ -8,53 +8,8 @@ import { loadUsersMessages } from '../actions/messages';
 
 class App extends PureComponent {
   componentDidMount() {
-    // this.messagesControl(data);
     this.props.loadUsersMessages('myAwesomeChatRoom');
   }
-
-  // setUsername = username => {
-  //   this.setState({ username, isLoggedIn: true });
-  // };
-
-  // setMessages = messages => {
-  //   this.setState({ messages });
-  // };
-
-  // setTimer = (ms, messageId) => {
-  //   const msWithDelay = ms + 5;
-  //   this.timer = setTimeout(() => {
-  //     this.clearMessage(messageId);
-  //   }, msWithDelay);
-  // };
-
-  // clearMessage = messageId => {
-  //   const { messages } = this.state;
-  //   const filteredMsgs = messages.filter((msg, i) => msg.messageId !== messageId);
-  //   this.setState({ messages: filteredMsgs }, () => {
-  //     console.log('inside clearmessage setState', this.state.messages);
-  //     this.messagesControl(this.state.messages);
-  //   });
-  // };
-
-  // messagesControl = messages => {
-  //   let nearestTimeout = null;
-  //   let messageId = null;
-  //   for (let i = 0; i < messages.length; i += 1) {
-  //     const msg = messages[i];
-  //     if (msg.selfDestruct) {
-  //       const timeLeft = msg.destructAt - Date.now();
-  //       if (nearestTimeout === null || timeLeft < nearestTimeout) {
-  //         nearestTimeout = timeLeft;
-  //         messageId = msg.messageId;
-  //       }
-  //     }
-  //   }
-  //   if (nearestTimeout !== null) {
-  //     console.log(`timemout happening in ${nearestTimeout} ms`);
-  //     this.setTimer(nearestTimeout, messageId);
-  //   }
-  //   this.setMessages(messages);
-  // };
 
   render() {
     const { username, isLoggedIn, messages, setUsername } = this.props;
