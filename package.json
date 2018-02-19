@@ -13,7 +13,8 @@
     "node:watch": "nodemon server/index.js",
     "node:webpack:watch": "webpack -wd",
     "webpack:dev": "webpack-dev-server",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "seed": "node db/seed.js"
   },
   "repository": {
     "type": "git",
