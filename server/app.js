@@ -2,18 +2,62 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
+const mongoose = require('mongoose');
 
 const app = express();
 const server = (module.exports = http.createServer(app));
 const io = socketIO(server);
+const User = mongoose.model('User');
+const Message = mongoose.model('User');
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-io.on('connection', client => {
-  client.on('subscribeToTimer', interval => {
-    console.log('client is subscribing to timer with interval ', interval);
+io.on('connection', socket => {
+  socket.on('subscribeToTimer', interval => {
     setInterval(() => {
-      client.emit('timer', new Date());
+      socket.emit('timer', new Date());
     }, interval);
+  });
+
+  socket.on('signup', username => {
+    const user = new User({ username });
+    socket.username = username;
+    User.find({ username }, (err, data) => {
+      if (err) {
+        console.error('err', err);
+      }
+    }).then(data => {
+      if (data.length === 0) {
+        user
+          .save()
+          .then(d => {
+            socket.emit('signup', d);
+          })
+          .catch(err => console('err', err));
+      } else {
+        socket.emit('signup', {
+          username: null,
+          error: 'Username Exists. Please choose another.',
+        });
+      }
+    });
+  });
+
+  socket.on('login', username => {
+    socket.username = username;
+    User.find({ username }, (err, data) => {
+      if (err) {
+        console.error('err', err);
+      }
+    }).then(data => {
+      if (data.length !== 0) {
+        socket.emit('login', data[0]);
+      } else {
+        socket.emit('login', {
+          username: null,
+          error: 'No user by that name. Please Sign Up.',
+        });
+      }
+    });
   });
 });
