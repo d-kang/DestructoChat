@@ -44,14 +44,16 @@ exports.updateMessages = (error, d, socket) => {
       if (err) {
         console.error('error', err);
       }
-    }).then(data => {
-      if (data.length !== 0) {
-        socket.broadcast.emit('load messages', data);
-      } else {
-        socket.emit('load messages', {
-          error: { errorMessage: 'Sorry No Messages.' },
-        });
-      }
-    });
+    })
+      .sort({ _id: 1 })
+      .then(data => {
+        if (data.length !== 0) {
+          socket.broadcast.emit('load messages', data);
+        } else {
+          socket.emit('load messages', {
+            error: { errorMessage: 'Sorry No Messages.' },
+          });
+        }
+      });
   }
 };
