@@ -3,13 +3,7 @@ import {
   LOAD_MESSAGES_SUCCESS,
   LOAD_MESSAGES_FAILURE,
 } from './constants';
-
-import mockMessages from '../data/mockMessages';
-
-const promisify = () =>
-  new Promise(resolve => {
-    setTimeout(() => resolve(mockMessages), 1000);
-  });
+import socket from '../socketConnection';
 
 const loadMessagesRequest = chatroom => ({
   type: LOAD_MESSAGES_REQUEST,
@@ -26,9 +20,14 @@ const loadMessagesFailure = error => ({
 
 const loadUsersMessages = (chatroom = 'lobby') => (dispatch, getState) => {
   dispatch(loadMessagesRequest(chatroom));
-  return promisify(chatroom)
-    .then(data => dispatch(loadMessagesSuccess(data)))
-    .catch(error => dispatch(loadMessagesFailure(error)));
+  socket.emit('load messages', chatroom);
+  socket.on('load messages', data => {
+    if (data.error) {
+      dispatch(loadMessagesFailure(data.error.errorMessage));
+    } else {
+      dispatch(loadMessagesSuccess(data));
+    }
+  });
 };
 
 export {
