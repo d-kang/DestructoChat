@@ -1,35 +1,59 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUserRequest, signupUserRequest } from '../actions/username';
 
 class LoginPage extends PureComponent {
-  state = {
-    textInput: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      textInput: '',
+      select: 'Login',
+    };
+  }
 
   onChange = e => {
     this.setState({ textInput: e.target.value });
   };
-
   onSubmit = e => {
     e.preventDefault();
-    this.props.setUsername(this.state.textInput);
+    const { select, textInput } = this.state;
+    if (select === 'Login') {
+      this.props.loginUserRequest(textInput);
+    } else {
+      this.props.signupUserRequest(textInput);
+    }
     e.target[0].value = '';
+  };
+
+  handleSelection = e => {
+    this.setState({ select: e.target.value });
   };
 
   render() {
     return (
       <div>
+        <select onChange={this.handleSelection}>
+          <option value="Login">Login</option>
+          <option value="Signup">Signup</option>
+        </select>
         <form onSubmit={this.onSubmit} action="">
-          login: <input type="text" maxLength="14" onChange={this.onChange} />
+          {this.state.select}:{' '}
+          <input type="text" maxLength="14" onChange={this.onChange} />
         </form>
-        {this.state.textInput}
       </div>
     );
   }
 }
 
 LoginPage.propTypes = {
-  setUsername: PropTypes.func.isRequired,
+  loginUserRequest: PropTypes.func.isRequired,
+  signupUserRequest: PropTypes.func.isRequired,
 };
 
-export default LoginPage;
+const mapStateToProps = store => ({});
+
+export default connect(mapStateToProps, {
+  loginUserRequest,
+  signupUserRequest,
+})(LoginPage);
