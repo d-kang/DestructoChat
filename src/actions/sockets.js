@@ -1,13 +1,14 @@
 import { UPDATE_TIMESTAMP } from './constants';
+import socket from '../socketConnection';
 
 const updateTimestamp = payload => ({
   type: UPDATE_TIMESTAMP,
   payload,
-  logger: console.log('updateTimeStamp Ran'),
 });
 
-const loadTimestamp = socket => dispatch => {
-  console.log('dispatch', dispatch);
+// socket.emit('subscribeToTimer', 1000);
+
+const loadTimestamp = () => dispatch => {
   socket.on('timer', data => {
     dispatch(updateTimestamp(data));
   });
