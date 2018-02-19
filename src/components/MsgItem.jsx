@@ -8,7 +8,7 @@ const MsgItem = ({
   destructAt,
   totalMs,
   hasExpired,
-  messageId,
+  _id: messageId,
 }) => (
   <div>
     <hr />
@@ -30,7 +30,7 @@ MsgItem.propTypes = {
   destructAt: PropTypes.number.isRequired,
   totalMs: PropTypes.number.isRequired,
   hasExpired: PropTypes.bool.isRequired,
-  messageId: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
 };
 
 export default MsgItem;
