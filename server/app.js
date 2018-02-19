@@ -8,7 +8,7 @@ const app = express();
 const server = (module.exports = http.createServer(app));
 const io = socketIO(server);
 const User = mongoose.model('User');
-const Message = mongoose.model('User');
+const Message = mongoose.model('Message');
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
@@ -56,6 +56,26 @@ io.on('connection', socket => {
         socket.emit('login', {
           username: null,
           error: 'No user by that name. Please Sign Up.',
+        });
+      }
+    });
+  });
+
+  socket.on('add message', message => {
+    Message.create(message);
+  });
+
+  socket.on('load messages', message => {
+    Message.find({}, (err, data) => {
+      if (err) {
+        console.error('err', err);
+      }
+    }).then(data => {
+      if (data.length !== 0) {
+        socket.emit('load messages', data);
+      } else {
+        socket.emit('load messages', {
+          error: { errorMessage: 'Sorry No Messages.' },
         });
       }
     });
