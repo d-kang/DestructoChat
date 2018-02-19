@@ -8,6 +8,8 @@ import {
   SIGNUP_USERNAME_FAILURE,
 } from './constants';
 
+import { loadUsersMessages } from './messages';
+
 const loginUserRequest = payload => dispatch => {
   socket.emit('login', payload);
   dispatch({ type: LOGIN_USERNAME_REQUEST });
@@ -15,6 +17,7 @@ const loginUserRequest = payload => dispatch => {
     console.log('on login >> loginUserRequest', data);
     if (data.username !== null) {
       dispatch({ type: LOGIN_USERNAME_SUCCESS, payload: data.username });
+      dispatch(loadUsersMessages('lobby'));
     } else {
       dispatch({ type: LOGIN_USERNAME_FAILURE, error: data.error });
     }
@@ -28,6 +31,7 @@ const signupUserRequest = payload => dispatch => {
     console.log('on login >> loginUserRequest', data);
     if (data.username !== null) {
       dispatch({ type: SIGNUP_USERNAME_SUCCESS, payload: data.username });
+      dispatch(loadUsersMessages('lobby'));
     } else {
       dispatch({ type: SIGNUP_USERNAME_FAILURE, error: data.error });
     }
