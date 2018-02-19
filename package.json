@@ -14,7 +14,8 @@
     "node:webpack:watch": "webpack -wd",
     "webpack:dev": "webpack-dev-server",
     "postinstall": "npm run build",
-    "seed": "node db/seed.js"
+    "seed": "node db/seed.js",
+    "seed:watch": "nodemon db/seed.js"
   },
   "repository": {
     "type": "git",
@@ -59,6 +60,7 @@
     "express": "^4.16.2",
     "moment": "^2.20.1",
     "mongoose": "^5.0.6",
+    "mongoose-auto-increment": "^5.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
