@@ -42,5 +42,8 @@ module.exports = {
     compress: true,
     port: 3001,
   },
-  plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
