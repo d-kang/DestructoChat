@@ -18,5 +18,5 @@ module.exports = socket => {
 
   socket.on('add message', data => addMessage(data, socket));
 
-  socket.on('load messages', data => loadMessages(data, socket));
+  socket.on('load messages', () => loadMessages(socket));
 };
