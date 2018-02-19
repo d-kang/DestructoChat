@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
 try {
   require('dotenv').config({ path: 'variables.env' });
@@ -8,11 +9,15 @@ try {
 
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
-mongoose.connection.on('error', error => {
+const db = mongoose.connection;
+
+db.on('error', error => {
   console.error('mongoose connection error', error);
 });
+
+autoIncrement.initialize(db);
 
 require('../db/models/User');
 require('../db/models/Message');
 
-module.exports = mongoose.connection;
+module.exports = db;
