@@ -1,5 +1,4 @@
 import { createReducer } from './createReducer';
-import data from '../data/mockMessages';
 
 import {
   LOAD_MESSAGES_REQUEST,
