@@ -13,23 +13,20 @@ exports.addMessage = (message, socket) => {
     if (err) {
       console.error('err2', err);
     } else if (data.selfDestruct === true) {
-      console.log('selfDestruct True >> data >>', data.message);
       const timeTillDestruct = data.destructAt - Date.now();
-      console.log('timeTillDestruct', timeTillDestruct);
       setTimeout(() => destroyMessage(data._id, socket), timeTillDestruct);
     }
   });
 };
 
-exports.loadMessages = (message, socket) => {
+exports.loadMessages = socket => {
   console.log('loadMessages ran');
   Message.find({}, (err, data) => {
     if (err) {
-      console.error('err3', err);
+      console.error('err', err);
     }
   }).then(data => {
     if (data.length !== 0) {
-      console.log('i ran', data);
       socket.emit('load messages', data);
     } else {
       socket.emit('load messages', {
