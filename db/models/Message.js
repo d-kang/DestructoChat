@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
 mongoose.Promise = global.Promise;
 
 const messageSchema = new mongoose.Schema({
+  messageId: {
+    type: Number,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
@@ -17,13 +22,11 @@ const messageSchema = new mongoose.Schema({
     default: false,
   },
   destructAt: Number,
-  totalMs: Number,
-  hasExpired: Boolean,
-  created_at: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
+});
+
+messageSchema.plugin(autoIncrement.plugin, {
+  model: 'Message',
+  field: 'messageId',
 });
 
 module.exports = mongoose.model('Message', messageSchema);
