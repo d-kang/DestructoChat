@@ -1,7 +1,7 @@
 const messages = [
   {
     username: 'david',
-    message: 'This Message will self Destruct in 5 seconds',
+    message: '(Message 1) This Message will self Destruct in 5 seconds',
     selfDestruct: true,
     destructAt: 5000 + Date.now(),
     totalMs: 5000,
@@ -10,7 +10,7 @@ const messages = [
   },
   {
     username: 'lisa',
-    message: 'This Message will self Destruct in 10 seconds.',
+    message: '(Message 2) This Message will self Destruct in 10 seconds.',
     selfDestruct: true,
     destructAt: 10000 + Date.now(),
     totalMs: 10000,
@@ -19,7 +19,7 @@ const messages = [
   },
   {
     username: 'francis',
-    message: 'This Message will self Destruct in 20 seconds.',
+    message: '(Message 3) This Message will self Destruct in 20 seconds.',
     selfDestruct: true,
     destructAt: 20000 + Date.now(),
     totalMs: 20000,
@@ -28,7 +28,7 @@ const messages = [
   },
   {
     username: 'sonrisa',
-    message: 'This Message will self Destruct in 30 seconds.',
+    message: '(Message 4) This Message will self Destruct in 30 seconds.',
     selfDestruct: true,
     destructAt: 30000 + Date.now(),
     totalMs: 30000,
@@ -37,7 +37,7 @@ const messages = [
   },
   {
     username: 'david',
-    message: 'This Message will not self destruct',
+    message: '(Message 5) This Message will not self destruct',
     selfDestruct: false,
     destructAt: -1,
     totalMs: -1,
@@ -46,7 +46,7 @@ const messages = [
   },
   {
     username: 'lisa',
-    message: 'This Message will self Destruct in 1 minute.',
+    message: '(Message 6) This Message will self Destruct in 1 minute.',
     selfDestruct: true,
     destructAt: 60000 + Date.now(),
     totalMs: 60000,
@@ -55,7 +55,7 @@ const messages = [
   },
   {
     username: 'francis',
-    message: 'This message will not self destruct.',
+    message: '(Message 7) This message will not self destruct.',
     selfDestruct: false,
     destructAt: -1,
     totalMs: -1,
@@ -64,7 +64,7 @@ const messages = [
   },
   {
     username: 'sonrisa',
-    message: 'This Message will self Destruct in 2 minutes.',
+    message: '(Message 8) This Message will self Destruct in 2 minutes.',
     selfDestruct: true,
     destructAt: 120000 + Date.now(),
     totalMs: 120000,
