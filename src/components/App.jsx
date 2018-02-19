@@ -22,20 +22,17 @@ class App extends PureComponent {
             This is the timer value:{' '}
             {moment(timestamp).format('MMMM Do YYYY, h:mm:ss a')}
           </p>
-          {error ? <p>{error}</p> : <p>Username: {username}</p>}
+          {username ? <p>{`Username: ${username}`}</p> : <p>{error}</p>}
         </div>
         <div>
           {!loggedIn ? <LoginPage /> : <ChatPage messages={messages} />}
         </div>
-        <div>username: {username}</div>
-        <div>loggedIn: {loggedIn.toString()}</div>
-        <div>messages: {JSON.stringify(messages)}</div>
       </div>
     );
   }
 }
 App.defaultProps = {
-  error: false,
+  error: '',
 };
 
 App.propTypes = {
