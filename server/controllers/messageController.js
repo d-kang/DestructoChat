@@ -25,15 +25,17 @@ exports.loadMessages = socket => {
     if (err) {
       console.error('err', err);
     }
-  }).then(data => {
-    if (data.length !== 0) {
-      socket.emit('load messages', data);
-    } else {
-      socket.emit('load messages', {
-        error: { errorMessage: 'Sorry No Messages.' },
-      });
-    }
-  });
+  })
+    .sort({ messageId: 1 })
+    .then(data => {
+      if (data.length !== 0) {
+        socket.emit('load messages', data);
+      } else {
+        socket.emit('load messages', {
+          error: { errorMessage: 'Sorry No Messages.' },
+        });
+      }
+    });
 };
 
 exports.updateMessages = (error, d, socket) => {
@@ -45,8 +47,9 @@ exports.updateMessages = (error, d, socket) => {
         console.error('error', err);
       }
     })
-      .sort({ _id: 1 })
+      .sort({ messageId: 1 })
       .then(data => {
+        console.log('data', data);
         if (data.length !== 0) {
           socket.broadcast.emit('load messages', data);
         } else {
