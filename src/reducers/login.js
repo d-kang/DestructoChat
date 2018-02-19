@@ -18,7 +18,6 @@ export default createReducer(initialState, {
   [LOGIN_USERNAME_REQUEST]: state => ({
     ...state,
     loading: true,
-    error: false,
   }),
   [LOGIN_USERNAME_SUCCESS]: (state, { payload }) => ({
     ...state,
@@ -35,7 +34,6 @@ export default createReducer(initialState, {
   [SIGNUP_USERNAME_REQUEST]: state => ({
     ...state,
     loading: true,
-    error: false,
   }),
   [SIGNUP_USERNAME_SUCCESS]: (state, { payload }) => ({
     ...state,
