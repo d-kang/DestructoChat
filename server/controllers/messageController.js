@@ -10,18 +10,18 @@ exports.loadMessages = socket => {
   })
     .sort({ createdAt: 1 })
     .then(data => {
-      if (data.length !== 0) {
-        socket.emit('load messages', data);
-      } else {
-        socket.emit('load messages', {
-          error: { errorMessage: 'Sorry No Messages.' },
-        });
-      }
+      socket.emit('load messages', data);
+    })
+    .catch(err => {
+      console.error('err', err);
+      socket.broadcast.emit('load messages', {
+        error: { errorMessage: 'There was an error loading the messages' },
+      });
     });
 };
 
-const destroyMessage = (_id, socket) => {
-  Message.find({ _id }).remove((err, data) =>
+exports.deleteMessage = (data, socket) => {
+  Message.find(data).remove((err, data) =>
     exports.updateMessages(err, data, socket)
   );
 };
@@ -33,7 +33,10 @@ exports.addMessage = (message, socket) => {
     .then(res => {
       if (res.selfDestruct === true) {
         const timeTillDestruct = res.destructAt - Date.now();
-        setTimeout(() => destroyMessage(res._id, socket), timeTillDestruct);
+        setTimeout(
+          () => exports.deleteMessage({ messageId: res.messageId }, socket),
+          timeTillDestruct
+        );
       }
       return res;
     })
@@ -52,15 +55,14 @@ exports.updateMessages = (error, d, socket) => {
     })
       .sort({ createdAt: 1 })
       .then(data => {
-        console.log('data', data);
-        if (data.length !== 0) {
-          socket.broadcast.emit('load messages', data);
-          socket.emit('load messages', data);
-        } else {
-          socket.broadcast.emit('load messages', {
-            error: { errorMessage: 'Sorry No Messages.' },
-          });
-        }
+        socket.broadcast.emit('load messages', data);
+        socket.emit('load messages', data);
+      })
+      .catch(err => {
+        console.error('err', err);
+        socket.broadcast.emit('load messages', {
+          error: { errorMessage: 'There was an error loading the messages' },
+        });
       });
   }
 };
