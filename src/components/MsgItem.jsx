@@ -43,7 +43,12 @@ class MsgItem extends React.PureComponent {
           <Comment.Metadata>
             <span>
               {this.state.timeUntil && (
-                <div>time till destruct: {this.state.timeUntil}</div>
+                <div>
+                  •{' '}
+                  <span style={{ color: '#4183C4' }}>
+                    time till destruct: {this.state.timeUntil}
+                  </span>
+                </div>
               )}
             </span>
           </Comment.Metadata>
