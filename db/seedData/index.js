@@ -23,8 +23,8 @@ const messages = [
   {
     username: 'Francis',
     message: 'No way, these message can self-destruct!',
-    selfDestruct: true,
-    destructAt: 60000 + Date.now(),
+    selfDestruct: false,
+    destructAt: -1,
   },
   {
     username: 'Sonrisa',
