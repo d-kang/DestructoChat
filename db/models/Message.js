@@ -9,7 +9,7 @@ const messageSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    username: {
+    author: {
       type: String,
       required: true,
     },
