@@ -59,7 +59,6 @@ const messages = [
   },
   {
     username: 'Matt',
-    time: 'Today at 5:42PM',
     message: 'How artistic!',
     selfDestruct: false,
     destructAt: -1,
@@ -67,7 +66,6 @@ const messages = [
   },
   {
     username: 'Elliot',
-    time: 'Yesterday at 12:30AM',
     message: 'This has been very useful for my research. Thanks as well!!',
     selfDestruct: false,
     destructAt: -1,
@@ -75,7 +73,6 @@ const messages = [
   },
   {
     username: 'Jenny',
-    time: 'Just now',
     message: 'Elliot you are always so right :)',
     selfDestruct: false,
     destructAt: -1,
@@ -83,11 +80,17 @@ const messages = [
   },
   {
     username: 'Joe',
-    time: '5 days ago',
     message: 'Dude, this is awesome. Thanks so much',
     selfDestruct: false,
     destructAt: -1,
     createdAt: '2018-02-18T00:43:50.000Z',
+  },
+  {
+    username: 'Lisa',
+    message: 'No Problem!',
+    selfDestruct: false,
+    destructAt: -1,
+    createdAt: '2018-02-19T00:43:50.000Z',
   },
 ];
 
