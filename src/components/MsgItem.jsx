@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Comment } from 'semantic-ui-react';
+import socket from '../socketConnection';
 
 class MsgItem extends React.PureComponent {
   state = {
@@ -31,10 +32,16 @@ class MsgItem extends React.PureComponent {
     }, interval);
   };
 
+  clickDelete = () => {
+    console.log('click delete');
+    console.log('this.props', this.props);
+    socket.emit('delete message', { messageId: this.props.messageId });
+  };
+
   render() {
     const { username, message, createdAt } = this.props;
     return (
-      <Comment>
+      <Comment id="comment__comment">
         <Comment.Content>
           <Comment.Author as="a">{username}</Comment.Author>
           <Comment.Metadata>
@@ -50,6 +57,11 @@ class MsgItem extends React.PureComponent {
                   </span>
                 </div>
               )}
+            </span>
+          </Comment.Metadata>
+          <Comment.Metadata>
+            <span id="message__delete" onClick={this.clickDelete}>
+              delete
             </span>
           </Comment.Metadata>
           <Comment.Text>{message}</Comment.Text>
