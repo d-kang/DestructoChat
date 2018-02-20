@@ -1,30 +1,19 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LoginPage from './LoginPage';
 import ChatContainer from './ChatContainer';
 
-class App extends PureComponent {
-  render() {
-    const { username, loggedIn, messages } = this.props;
-    return (
-      <div>
-        {!loggedIn ? <LoginPage /> : <ChatContainer messages={messages} />}
-      </div>
-    );
-  }
-}
+const App = ({ loggedIn }) => (
+  <div>{!loggedIn ? <LoginPage /> : <ChatContainer />}</div>
+);
 
 App.propTypes = {
-  username: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const mapStateToProps = ({ login, messages }) => ({
-  username: login.username,
+const mapStateToProps = ({ login }) => ({
   loggedIn: login.loggedIn,
-  messages: messages.messages,
 });
 
 export default connect(mapStateToProps)(App);
