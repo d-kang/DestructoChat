@@ -16,7 +16,7 @@ exports.signup = (username, socket) => {
         .then(d => {
           socket.emit('signup', d);
         })
-        .catch(err => console('err', err));
+        .catch(err => console.error('err>>', err));
     } else {
       socket.emit('signup', {
         username: null,
