@@ -19,4 +19,22 @@ body > div {
   background-color:#303E4D;
   color:white;
 }
+#chat__button {
+  background-color:#303E4D;
+  color:white;
+}
+
+#chat__chatroom {
+  display:flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+#chat__chatbox {
+  overflow-y: scroll;
+  height: 70%;
+}
 
