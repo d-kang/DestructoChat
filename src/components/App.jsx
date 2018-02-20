@@ -8,35 +8,22 @@ class App extends PureComponent {
   componentDidMount() {}
 
   render() {
-    const { username, loggedIn, messages, error } = this.props;
+    const { username, loggedIn, messages } = this.props;
     return (
-      <div>
-        <div>
-          {username ? <p>{`Username: ${username}`}</p> : <p>{error}</p>}
-        </div>
-        <div>
-          {!loggedIn ? <LoginPage /> : <ChatPage messages={messages} />}
-        </div>
-      </div>
+      <div>{!loggedIn ? <LoginPage /> : <ChatPage messages={messages} />}</div>
     );
   }
 }
-App.defaultProps = {
-  error: '',
-};
 
 App.propTypes = {
   username: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  messages: PropTypes.array.isRequired,
-  error: PropTypes.string,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const mapStateToProps = ({ login, messages, socket }) => ({
-  logger: console.log('login', login),
+const mapStateToProps = ({ login, messages }) => ({
   username: login.username,
   loggedIn: login.loggedIn,
-  error: login.error,
   messages: messages.messages,
 });
 
