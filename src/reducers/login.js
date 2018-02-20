@@ -23,7 +23,6 @@ export default createReducer(initialState, {
     ...state,
     loading: false,
     loggedIn: true,
-    logger: console.log('reducer payload', payload),
     username: payload,
   }),
   [LOGIN_USERNAME_FAILURE]: (state, { error }) => ({
