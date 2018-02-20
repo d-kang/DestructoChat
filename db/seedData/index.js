@@ -2,51 +2,51 @@ const myMessages = [];
 
 const messages = [
   {
-    username: 'Sonrisa',
+    author: 'Sonrisa',
     message: 'Done!!!! Thank you everyone for your awesome help and support!!!',
     selfDestruct: false,
     destructAt: -1,
     createdAt: '2018-02-15T02:43:50.000Z',
   },
   {
-    username: 'David',
+    author: 'David',
     message: 'testing the desctructable chat app! whoo!',
     selfDestruct: true,
     destructAt: 20000 + Date.now(),
   },
   {
-    username: 'Lisa',
+    author: 'Lisa',
     message: 'i want to see the githubs for these. theyre such amaze',
     selfDestruct: true,
     destructAt: 25000 + Date.now(),
   },
   {
-    username: 'Francis',
+    author: 'Francis',
     message: 'No way, these message can self-destruct!',
     selfDestruct: false,
     destructAt: -1,
   },
   {
-    username: 'Sonrisa',
+    author: 'Sonrisa',
     message: 'Me too!! this is awesome!!',
     selfDestruct: true,
     destructAt: 30000 + Date.now(),
   },
   {
-    username: 'Francis',
+    author: 'Francis',
     message: '+1 ^^^',
     selfDestruct: false,
     destructAt: -1,
   },
   {
-    username: 'Matt',
+    author: 'Matt',
     message: 'How artistic!',
     selfDestruct: false,
     destructAt: -1,
     createdAt: '2018-02-15T02:43:50.000Z',
   },
   {
-    username: 'Elliot',
+    author: 'Elliot',
     message: 'This has been very useful for my research. Thanks as well!!',
     selfDestruct: false,
     destructAt: -1,
@@ -54,14 +54,14 @@ const messages = [
   },
 
   {
-    username: 'Joe',
+    author: 'Joe',
     message: 'Dude, this is awesome. Thanks so much',
     selfDestruct: false,
     destructAt: -1,
     createdAt: '2018-02-18T00:43:50.000Z',
   },
   {
-    username: 'Lisa',
+    author: 'Lisa',
     message: 'Happy New Year Everybody!!',
     selfDestruct: false,
     destructAt: -1,
