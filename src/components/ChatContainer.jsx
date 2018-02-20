@@ -4,17 +4,24 @@ import { connect } from 'react-redux';
 import { Button, Comment, Form, Header } from 'semantic-ui-react';
 import MsgList from './MsgList';
 import socket from '../socketConnection';
-import DropdownUI from './DropdownUI';
-import { dropDownTagOptions } from '../options';
+import DropdownContainer from './DropdownContainer';
 
 class ChatContainer extends PureComponent {
   state = {
-    textInput: '',
+    message: '',
+    selfDestruct: false,
+    destructAt: -1,
+    dropdownDisplay: 'Self Destruct',
   };
 
   onTextInput = e => {
-    const textInput = e.target.value;
-    this.setState({ textInput });
+    const message = e.target.value;
+    this.setState({ message });
+  };
+
+  setSelfDestruct = data => {
+    this.setState(data);
+    console.log('data', data);
   };
 
   submitMessage = e => {
@@ -22,19 +29,29 @@ class ChatContainer extends PureComponent {
     e.preventDefault();
     e.target[0].value = '';
     console.log('ran');
-    const { textInput } = this.state;
+    const { message, selfDestruct, destructAt } = this.state;
     const { username } = this.props;
-    const myMessageObj = {
+    const data = {
       username,
-      message: textInput,
-      selfDestruct: true,
-      destructAt: 30000 + Date.now(),
+      message,
+      selfDestruct,
+      destructAt: destructAt + Date.now() + 2000,
     };
-    socket.emit('add message', myMessageObj);
+    socket.emit('add message', data);
+    this.refreshDestructState();
+  };
+  refreshDestructState = () => {
+    const refreshData = {
+      selfDestruct: false,
+      destructAt: -1,
+      dropdownDisplay: 'Self Destruct',
+    };
+    this.setState(refreshData);
   };
 
   render() {
-    const { messages, tagOptions } = this.props;
+    const { messages } = this.props;
+    const { dropdownDisplay } = this.state;
     return (
       <Comment.Group threaded id="chat__chatroom">
         <Header as="h3" dividing>
@@ -49,21 +66,19 @@ class ChatContainer extends PureComponent {
             icon="edit"
             id="chat__button"
           />
-          <DropdownUI text="Self Destruct" tagOptions={tagOptions} />
+          <DropdownContainer
+            setSelfDestruct={this.setSelfDestruct}
+            dropdownDisplay={dropdownDisplay}
+          />
         </Form>
       </Comment.Group>
     );
   }
 }
 
-ChatContainer.defaultProps = {
-  tagOptions: dropDownTagOptions,
-};
-
 ChatContainer.propTypes = {
   username: PropTypes.string.isRequired,
   messages: PropTypes.arrayOf(PropTypes.object).isRequired,
-  tagOptions: PropTypes.arrayOf(PropTypes.object),
 };
 
 const mapStateToProps = ({ login, messages }) => ({
