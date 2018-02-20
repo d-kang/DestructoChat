@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LoginPage from './LoginPage';
 import ChatPage from './ChatPage';
+import CommentExample from './CommentExample';
 
 class App extends PureComponent {
-  componentDidMount() {}
-
   render() {
     const { username, loggedIn, messages } = this.props;
     return (
