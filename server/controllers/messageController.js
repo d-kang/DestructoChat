@@ -26,7 +26,7 @@ exports.loadMessages = socket => {
       console.error('err', err);
     }
   })
-    .sort({ messageId: 1 })
+    .sort({ createdAt: 1 })
     .then(data => {
       if (data.length !== 0) {
         socket.emit('load messages', data);
@@ -47,7 +47,7 @@ exports.updateMessages = (error, d, socket) => {
         console.error('error', err);
       }
     })
-      .sort({ messageId: 1 })
+      .sort({ createdAt: 1 })
       .then(data => {
         console.log('data', data);
         if (data.length !== 0) {
