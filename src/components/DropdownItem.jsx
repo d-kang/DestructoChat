@@ -17,7 +17,6 @@ class DropdownItem extends PureComponent {
   };
   render() {
     const { icon, text, label } = this.props;
-    console.log('this.props', this.props);
     return (
       <Dropdown.Item
         label={label}
@@ -29,10 +28,15 @@ class DropdownItem extends PureComponent {
   }
 }
 
+DropdownItem.defaultProps = {
+  icon: null,
+  label: null,
+};
+
 DropdownItem.propTypes = {
   setSelfDestruct: PropTypes.func.isRequired,
-  icon: PropTypes.string.isRequired,
-  label: PropTypes.object.isRequired,
+  icon: PropTypes.string,
+  label: PropTypes.object,
   value: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
 };
