@@ -2,14 +2,15 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LoginPage from './LoginPage';
-import ChatPage from './ChatPage';
-import CommentExample from './CommentExample';
+import ChatContainer from './ChatContainer';
 
 class App extends PureComponent {
   render() {
     const { username, loggedIn, messages } = this.props;
     return (
-      <div>{!loggedIn ? <LoginPage /> : <ChatPage messages={messages} />}</div>
+      <div>
+        {!loggedIn ? <LoginPage /> : <ChatContainer messages={messages} />}
+      </div>
     );
   }
 }
