@@ -21,14 +21,11 @@ class ChatContainer extends PureComponent {
 
   setSelfDestruct = data => {
     this.setState(data);
-    console.log('data', data);
   };
 
   submitMessage = e => {
-    console.log('e', e);
     e.preventDefault();
     e.target[0].value = '';
-    console.log('ran');
     const { message, selfDestruct, destructAt } = this.state;
     const { username } = this.props;
     const data = {
@@ -55,7 +52,7 @@ class ChatContainer extends PureComponent {
     return (
       <Comment.Group threaded id="chat__chatroom">
         <Header as="h3" dividing>
-          Desctructo Chat
+          Destructo Chat
         </Header>
         <MsgList messages={messages} />
         <Form id="chat__form" onSubmit={this.submitMessage}>
