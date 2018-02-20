@@ -27,9 +27,11 @@ class ChatContainer extends PureComponent {
     e.preventDefault();
     e.target[0].value = '';
     const { message, selfDestruct, destructAt } = this.state;
+    console.log('this.state', this.state)
+    console.log('this.props', this.props)
     const { username } = this.props;
     const data = {
-      username,
+      author: username,
       message,
       selfDestruct,
       destructAt: destructAt + Date.now() + 2000,
@@ -47,14 +49,14 @@ class ChatContainer extends PureComponent {
   };
 
   render() {
-    const { messages } = this.props;
+    const { messages, username } = this.props;
     const { dropdownDisplay } = this.state;
     return (
       <Comment.Group threaded id="chat__chatroom">
         <Header as="h3" dividing>
           Destructo Chat
         </Header>
-        <MsgList messages={messages} />
+        <MsgList messages={messages} username={username}/>
         <Form id="chat__form" onSubmit={this.submitMessage}>
           <Form.Input size="big" onChange={this.onTextInput} />
           <Button
