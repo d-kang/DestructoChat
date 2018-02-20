@@ -1,5 +1,10 @@
 const dropDownTagOptions = [
   {
+    text: 'cancel',
+    value: -1,
+    icon: 'x',
+  },
+  {
     text: '10 seconds',
     value: 10000,
     label: { color: 'orange', empty: true, circular: true },
