@@ -33,17 +33,15 @@ class MsgItem extends React.PureComponent {
   };
 
   clickDelete = () => {
-    console.log('click delete');
-    console.log('this.props', this.props);
     socket.emit('delete message', { messageId: this.props.messageId });
   };
 
   render() {
-    const { username, message, createdAt } = this.props;
+    const { author, username, message, createdAt } = this.props;
     return (
       <Comment id="comment__comment">
         <Comment.Content>
-          <Comment.Author as="a">{username}</Comment.Author>
+          <Comment.Author as="a">{author}</Comment.Author>
           <Comment.Metadata>
             <span>{moment(createdAt).fromNow()}</span>
           </Comment.Metadata>
@@ -60,9 +58,11 @@ class MsgItem extends React.PureComponent {
             </span>
           </Comment.Metadata>
           <Comment.Metadata>
-            <span id="message__delete" onClick={this.clickDelete}>
-              delete
-            </span>
+            {author === username && (
+              <span id="message__delete" onClick={this.clickDelete}>
+                delete
+              </span>
+            )}
           </Comment.Metadata>
           <Comment.Text>{message}</Comment.Text>
         </Comment.Content>
@@ -72,6 +72,7 @@ class MsgItem extends React.PureComponent {
 }
 
 MsgItem.propTypes = {
+  author: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   selfDestruct: PropTypes.bool.isRequired,
