@@ -8,7 +8,6 @@ class MsgItem extends React.PureComponent {
   };
 
   componentDidMount() {
-    console.log('this.props.selfDestruct', this.props);
     if (this.props.selfDestruct === true) {
       this.getTimeUntil(this.props.destructAt);
     }
@@ -32,21 +31,12 @@ class MsgItem extends React.PureComponent {
   };
 
   render() {
-    const {
-      username,
-      message,
-      selfDestruct,
-      destructAt,
-      messageId,
-    } = this.props;
+    const { username, message } = this.props;
     return (
       <div>
         <hr />
         <div>username: {username}</div>
         <div>message: {message}</div>
-        <div>selfDestruct: {selfDestruct}</div>
-        <div>destructAt: {destructAt}</div>
-        <div>messageId: {messageId}</div>
         {this.state.timeUntil && (
           <div>time till destruct: {this.state.timeUntil}</div>
         )}
