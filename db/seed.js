@@ -2,14 +2,12 @@ require('./dbConnection');
 const mongoose = require('mongoose');
 const { users, messages } = require('./seedData');
 
-// const socket = require('../src/socketConnection');
-
 const User = mongoose.model('User');
 const Message = mongoose.model('Message');
 
 const io = require('socket.io-client');
 
-const client = io.connect('http://localhost:8000');
+const client = io.connect('https://destructochat.herokuapp.com/');
 
 User.remove({}, err => {
   if (err) {
