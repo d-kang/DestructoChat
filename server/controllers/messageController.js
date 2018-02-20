@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Message = mongoose.model('Message');
 
 exports.loadMessages = socket => {
-  console.log('loadMessages ran');
   Message.find({}, (err, data) => {
     if (err) {
       console.error('err', err);
