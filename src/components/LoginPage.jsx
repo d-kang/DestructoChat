@@ -9,7 +9,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { loginUserRequest, signupUserRequest } from '../actions/username';
+import { loginUser, signupUser } from '../actions/username';
 
 class LoginPage extends PureComponent {
   state = {
@@ -24,9 +24,9 @@ class LoginPage extends PureComponent {
     e.preventDefault();
     const { loginScreen, textInput } = this.state;
     if (loginScreen) {
-      this.props.loginUserRequest(textInput);
+      this.props.loginUser(textInput);
     } else {
-      this.props.signupUserRequest(textInput);
+      this.props.signupUser(textInput);
     }
     e.target[0].value = '';
   };
@@ -102,8 +102,8 @@ LoginPage.defaultProps = {
 };
 
 LoginPage.propTypes = {
-  loginUserRequest: PropTypes.func.isRequired,
-  signupUserRequest: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  signupUser: PropTypes.func.isRequired,
   onLogin: PropTypes.object,
   onSignup: PropTypes.object,
   error: PropTypes.string,
@@ -114,6 +114,6 @@ const mapStateToProps = ({ login }) => ({
 });
 
 export default connect(mapStateToProps, {
-  loginUserRequest,
-  signupUserRequest,
+  loginUser,
+  signupUser,
 })(LoginPage);
