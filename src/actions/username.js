@@ -10,32 +10,44 @@ import {
 
 import { loadUsersMessages } from './messages';
 
-const loginUserRequest = payload => dispatch => {
+const loginUserRequest = () => ({ type: LOGIN_USERNAME_REQUEST });
+const loginUserSuccess = payload => ({ type: LOGIN_USERNAME_SUCCESS, payload });
+const loginUserFailure = error => ({ type: LOGIN_USERNAME_FAILURE, error });
+
+const signupUserRequest = () => ({ type: SIGNUP_USERNAME_REQUEST });
+const signupUserSuccess = payload => ({
+  type: SIGNUP_USERNAME_SUCCESS,
+  payload,
+});
+const signupUserFailure = error => ({
+  type: SIGNUP_USERNAME_FAILURE,
+  error,
+});
+
+const loginUser = payload => dispatch => {
   socket.emit('login', payload);
-  dispatch({ type: LOGIN_USERNAME_REQUEST });
+  dispatch(loginUserRequest());
   socket.on('login', data => {
-    console.log('on login >> loginUserRequest', data);
     if (data.username !== null) {
-      dispatch({ type: LOGIN_USERNAME_SUCCESS, payload: data.username });
+      dispatch(loginUserSuccess(data.username));
       dispatch(loadUsersMessages('lobby'));
     } else {
-      dispatch({ type: LOGIN_USERNAME_FAILURE, error: data.error });
+      dispatch(loginUserFailure(data.error));
     }
   });
 };
 
-const signupUserRequest = payload => dispatch => {
+const signupUser = payload => dispatch => {
   socket.emit('signup', payload);
-  dispatch({ type: SIGNUP_USERNAME_REQUEST });
+  dispatch(signupUserRequest());
   socket.on('signup', data => {
-    console.log('on login >> loginUserRequest', data);
     if (data.username !== null) {
-      dispatch({ type: SIGNUP_USERNAME_SUCCESS, payload: data.username });
+      dispatch(signupUserSuccess(data.username));
       dispatch(loadUsersMessages('lobby'));
     } else {
-      dispatch({ type: SIGNUP_USERNAME_FAILURE, error: data.error });
+      dispatch(signupUserFailure(data.error));
     }
   });
 };
 
-export { loginUserRequest, signupUserRequest };
+export { loginUser, signupUser };
