@@ -38,7 +38,10 @@ body > div {
   height: 70%;
 }
 
-#message__delete:hover {
-  color:red
+#comment__comment:hover #message__delete{
+  color: #4183C4;
 }
 
+#message__delete {
+  color:white;
+}
