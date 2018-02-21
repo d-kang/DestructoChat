@@ -39,6 +39,7 @@ class ChatContainer extends PureComponent {
   };
   refreshDestructState = () => {
     const refreshData = {
+      message: '',
       selfDestruct: false,
       destructAt: -1,
       dropdownDisplay: 'Self Destruct',
