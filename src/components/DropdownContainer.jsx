@@ -8,7 +8,13 @@ class DropdownContainer extends PureComponent {
   render() {
     const { tagOptions, setSelfDestruct, dropdownDisplay } = this.props;
     return (
-      <Dropdown upward text={dropdownDisplay} multiple icon="filter">
+      <Dropdown
+        style={{ color: 'white' }}
+        upward
+        text={dropdownDisplay}
+        multiple
+        icon="filter"
+      >
         <Dropdown.Menu>
           <Dropdown.Menu scrolling>
             <DropdownList
