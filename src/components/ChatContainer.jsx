@@ -52,7 +52,10 @@ class ChatContainer extends PureComponent {
     return (
       <Comment.Group threaded id="chat__chatroom">
         <Header as="h3" dividing>
-          Destructo Chat
+          Destructo Chat <span style={{ opacity: '0' }}>•</span>{' '}
+          <span style={{ color: 'white', fontSize: '.7em' }}>
+            Logged in as {username}
+          </span>
         </Header>
         <div id="chat__chatbox" ref={elem => (this._chatbox = elem)}>
           <MsgList messages={messages} username={username} />
