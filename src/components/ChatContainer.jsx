@@ -27,8 +27,6 @@ class ChatContainer extends PureComponent {
     e.preventDefault();
     e.target[0].value = '';
     const { message, selfDestruct, destructAt } = this.state;
-    console.log('this.state', this.state)
-    console.log('this.props', this.props)
     const { username } = this.props;
     const data = {
       author: username,
@@ -56,18 +54,25 @@ class ChatContainer extends PureComponent {
         <Header as="h3" dividing>
           Destructo Chat
         </Header>
-        <MsgList messages={messages} username={username}/>
+        <div id="chat__chatbox" ref={elem => (this._chatbox = elem)}>
+          <MsgList messages={messages} username={username} />
+        </div>
         <Form id="chat__form" onSubmit={this.submitMessage}>
-          <Form.Input size="big" onChange={this.onTextInput} />
+          <Form.Input
+            size="big"
+            onChange={this.onTextInput}
+            label={
+              <DropdownContainer
+                setSelfDestruct={this.setSelfDestruct}
+                dropdownDisplay={dropdownDisplay}
+              />
+            }
+          />
           <Button
             content="Add Reply"
             labelPosition="left"
             icon="edit"
             id="chat__button"
-          />
-          <DropdownContainer
-            setSelfDestruct={this.setSelfDestruct}
-            dropdownDisplay={dropdownDisplay}
           />
         </Form>
       </Comment.Group>
