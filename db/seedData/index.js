@@ -33,7 +33,7 @@ const messages = [
     destructAt: 30000 + Date.now(),
   },
   {
-    author: 'Francis',
+    author: 'David',
     message: '+1 ^^^',
     selfDestruct: false,
     destructAt: -1,
