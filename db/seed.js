@@ -7,17 +7,6 @@ const Message = mongoose.model('Message');
 
 const client = require('../src/socketConnection');
 
-User.remove({}, err => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('User Collection Cleared');
-    users.forEach(user => {
-      client.emit('signup', user.username);
-    });
-  }
-});
-
 Message.remove({}, err => {
   if (err) {
     console.error(err);
