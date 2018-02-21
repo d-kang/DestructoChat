@@ -1,4 +1,3 @@
-
 body > div > div > div > div.login-form {
   height: 100%;
 }
@@ -44,4 +43,25 @@ body > div {
 
 #message__delete {
   color:white;
+}
+
+body {
+  background-image: url(https://images.unsplash.com/photo-1431629452562-165c8f49fc97?ixlib=rb-0.3.5&s=995930e5e5a391860e70cd6bd781546c&auto=format&fit=crop&w=1350&q=80);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #3E363F;
+  height: 100vh;
+  overflow: hidden;
+}
+#chat__chatbox {
+  background: white;
+  border-radius: 5px;
+  padding: 20px;
+  opacity: 0.95;
+}
+
+
+#chat__form {
+  padding-top: 10px;
 }
