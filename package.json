@@ -8,11 +8,11 @@
   },
   "scripts": {
     "build": "webpack -p --display-error-details --colors",
-    "start": "node server/index.js",
+    "start": "NODE_ENV=production node server/index.js",
     "node:dev": "npm run node:watch & npm run node:webpack:watch",
     "node:watch": "nodemon server/index.js",
     "node:webpack:watch": "webpack -wd",
-    "webpack:dev": "webpack-dev-server",
+    "webpack:dev": "NODE_ENV=development webpack-dev-server",
     "postinstall": "npm run build",
     "seed": "node db/seed.js",
     "seed:watch": "nodemon db/seed.js"
