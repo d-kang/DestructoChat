@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const { URL } = require('./config');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -45,5 +46,8 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': { URL },
+    }),
   ],
 };
