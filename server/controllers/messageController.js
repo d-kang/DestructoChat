@@ -55,7 +55,6 @@ exports.updateMessages = (error, d, socket) => {
     })
       .sort({ createdAt: 1 })
       .then(data => {
-        socket.broadcast.emit('load messages', data);
         socket.emit('load messages', data);
       })
       .catch(err => {
