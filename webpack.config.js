@@ -42,6 +42,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3001,
+    overlay: true,
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
