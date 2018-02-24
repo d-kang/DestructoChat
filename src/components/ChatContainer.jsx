@@ -13,12 +13,6 @@ class ChatContainer extends PureComponent {
     destructAt: -1,
     dropdownDisplay: 'Self Destruct',
   };
-  componentDidMount() {
-    this.scrollToBottom();
-  }
-  componentDidUpdate() {
-    this.scrollToBottom();
-  }
 
   onTextInput = e => {
     const message = e.target.value;
@@ -27,9 +21,6 @@ class ChatContainer extends PureComponent {
 
   setSelfDestruct = data => {
     this.setState(data);
-  };
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
 
   submitMessage = e => {
@@ -67,15 +58,7 @@ class ChatContainer extends PureComponent {
             Logged in as {username}
           </span>
         </Header>
-        <div id="chat__chatbox" ref={elem => (this._chatbox = elem)}>
-          <MsgList messages={messages} username={username} />
-          <div
-            style={{ float: 'left', clear: 'both' }}
-            ref={el => {
-              this.messagesEnd = el;
-            }}
-          />
-        </div>
+        <MsgList messages={messages} username={username} />
         <Form id="chat__form" onSubmit={this.submitMessage}>
           <Form.Input
             size="big"
