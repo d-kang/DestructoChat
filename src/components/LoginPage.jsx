@@ -9,7 +9,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { loginUser, signupUser } from '../actions/username';
+import { loginUser, signupUser } from '../actions/login';
 
 class LoginPage extends PureComponent {
   state = {
