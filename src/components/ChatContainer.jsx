@@ -1,36 +1,31 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Comment, Form, Header } from 'semantic-ui-react';
+import { Comment, Header } from 'semantic-ui-react';
 import MsgList from './MsgList';
 import socket from '../socketConnection';
-import DropdownContainer from './DropdownContainer';
+import ChatForm from './ChatForm';
 
 class ChatContainer extends PureComponent {
   state = {
-    message: '',
+    value: '',
     selfDestruct: false,
     destructAt: -1,
     dropdownDisplay: 'Self Destruct',
   };
 
-  onTextInput = e => {
-    const message = e.target.value;
-    this.setState({ message });
-  };
-
-  setSelfDestruct = data => {
+  setChatContainerState = data => {
     this.setState(data);
   };
 
   submitMessage = e => {
     e.preventDefault();
     e.target[0].value = '';
-    const { message, selfDestruct, destructAt } = this.state;
+    const { value, selfDestruct, destructAt } = this.state;
     const { username } = this.props;
     const data = {
       author: username,
-      message,
+      message: value,
       selfDestruct,
       destructAt: destructAt + Date.now() + 2000,
     };
@@ -59,24 +54,11 @@ class ChatContainer extends PureComponent {
           </span>
         </Header>
         <MsgList messages={messages} username={username} />
-        <Form id="chat__form" onSubmit={this.submitMessage}>
-          <Form.Input
-            size="big"
-            onChange={this.onTextInput}
-            label={
-              <DropdownContainer
-                setSelfDestruct={this.setSelfDestruct}
-                dropdownDisplay={dropdownDisplay}
-              />
-            }
-          />
-          <Button
-            content="Add Reply"
-            labelPosition="left"
-            icon="edit"
-            id="chat__button"
-          />
-        </Form>
+        <ChatForm
+          buttonText="Add Reply"
+          setParentState={this.setChatContainerState}
+          dropdownDisplay={dropdownDisplay}
+        />
       </Comment.Group>
     );
   }
