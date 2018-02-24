@@ -1,4 +1,4 @@
-html, body {
+html {
   height: 100%;
 }
 
@@ -53,12 +53,12 @@ body > div {
 }
 
 body {
+  min-height: 100%;
   background-image: url(https://images.unsplash.com/photo-1431629452562-165c8f49fc97?ixlib=rb-0.3.5&s=995930e5e5a391860e70cd6bd781546c&auto=format&fit=crop&w=1350&q=80);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: #3E363F;
-  height: 100vh;
   overflow: hidden;
 }
 #chat__chatbox {
