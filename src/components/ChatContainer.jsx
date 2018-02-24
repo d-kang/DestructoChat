@@ -8,7 +8,6 @@ import ChatForm from './ChatForm';
 
 class ChatContainer extends PureComponent {
   state = {
-    value: '',
     selfDestruct: false,
     destructAt: -1,
     dropdownDisplay: 'Self Destruct',
@@ -18,11 +17,10 @@ class ChatContainer extends PureComponent {
     this.setState(data);
   };
 
-  submitMessage = e => {
-    e.preventDefault();
-    e.target[0].value = '';
-    const { value, selfDestruct, destructAt } = this.state;
+  submitMessage = value => {
+    const { selfDestruct, destructAt } = this.state;
     const { username } = this.props;
+
     const data = {
       author: username,
       message: value,
@@ -56,6 +54,7 @@ class ChatContainer extends PureComponent {
         <MsgList messages={messages} username={username} />
         <ChatForm
           buttonText="Add Reply"
+          submitMessage={this.submitMessage}
           setParentState={this.setChatContainerState}
           dropdownDisplay={dropdownDisplay}
         />
