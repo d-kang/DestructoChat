@@ -6,19 +6,19 @@ import DropdownContainer from './Dropdown/DropdownContainer';
 class ChatForm extends React.Component {
   state = { value: '' };
 
-  handleChange(event) {
+  handleChange = event => {
     this.setState({ value: event.target.value });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { value } = this.state;
-    const { setParentState } = this.props;
-    setParentState({ value });
+    const { submitMessage } = this.props;
+    submitMessage(value);
     this.clearState('value');
 
     e.target[0].value = '';
-  }
+  };
 
   clearState = propertyName => {
     this.setState({ [propertyName]: '' });
