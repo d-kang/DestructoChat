@@ -1,44 +1,47 @@
 const mongoose = require('mongoose');
 
 const Message = mongoose.model('Message');
-const { signup, login } = require('../controllers/userController');
+const { signup, login } = require('../controllers/user.controller');
 const {
   addMessage,
   loadMessages,
   updateMessages,
   deleteMessage,
-} = require('../controllers/messageController');
+} = require('../controllers/message.controller');
 
-module.exports = socket => {
-  Message.find({}, (err, data) => {
-    if (err) {
-      console.error('error', err);
-    }
-  })
-    .then(res => {
-      res.forEach(({ selfDestruct, destructAt, messageId }) => {
-        if (selfDestruct === true) {
-          console.log('selfDestruct is true');
-          const timeTillDestruct = destructAt - Date.now();
-          setTimeout(
-            () => deleteMessage({ messageId }, socket),
-            timeTillDestruct
-          );
-        }
-      });
-
-      return res;
+module.exports = io => {
+  io.on('connection', socket => {
+    Message.find({}, (err, data) => {
+      if (err) {
+        console.error('error', err);
+      }
     })
-    .then(res => updateMessages(null, res, socket))
-    .catch(e => console.error('e', e));
+      .then(res => {
+        res.forEach(({ selfDestruct, destructAt, messageId }) => {
+          if (selfDestruct === true) {
+            const timeTillDestruct = destructAt - Date.now();
+            setTimeout(
+              () => deleteMessage({ messageId }, socket),
+              timeTillDestruct
+            );
+          }
+        });
 
-  socket.on('signup', data => signup(data, socket));
+        return res;
+      })
+      .then(res => updateMessages(null, res, socket))
+      .catch(e => console.error('e', e));
+  });
 
-  socket.on('login', data => login(data, socket));
+  io.on('connection', socket => {
+    socket.on('signup', data => signup(data, socket, io));
 
-  socket.on('add message', data => addMessage(data, socket));
+    socket.on('login', data => login(data, socket, io));
 
-  socket.on('load messages', () => loadMessages(socket));
+    socket.on('add message', data => addMessage(data, socket, io));
 
-  socket.on('delete message', data => deleteMessage(data, socket));
+    socket.on('load messages', () => loadMessages(socket, io));
+
+    socket.on('delete message', data => deleteMessage(data, socket, io));
+  });
 };
