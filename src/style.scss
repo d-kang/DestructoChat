@@ -1,19 +1,28 @@
 html {
   height: 100%;
 }
+body {
+  min-height: 100%;
+  background-image: url(https://images.unsplash.com/photo-1431629452562-165c8f49fc97?ixlib=rb-0.3.5&s=995930e5e5a391860e70cd6bd781546c&auto=format&fit=crop&w=1350&q=80);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #3E363F;
+  overflow: hidden;
+}
 
-// body > div > div > div > div.login-form {
-//   height: 100%;
-// }
-// body > div > div > div {
-//   height: 100%;
-// }
-// body > div > div {
-//   height: 100%;
-// }
-// body > div {
-//   height: 100%;
-// }
+body > div > div > div > div.login-form {
+  height: 100%;
+}
+body > div > div > div {
+  height: 100%;
+}
+body > div > div {
+  height: 100%;
+}
+body > div {
+  height: 100%;
+}
 
 #login__header {
   color:White;
@@ -30,6 +39,7 @@ html {
 }
 
 #chat__chatroom {
+  height: 100%;
   display:flex;
   flex-direction: column;
   width: 80%;
@@ -39,9 +49,10 @@ html {
   margin-top: 20px;
 }
 
+
 #chat__chatbox {
   overflow-y: scroll;
-  height: 70%;
+  height: 80%;
 }
 
 #comment__comment:hover #message__delete{
@@ -52,15 +63,7 @@ html {
   color:white;
 }
 
-body {
-  min-height: 100%;
-  background-image: url(https://images.unsplash.com/photo-1431629452562-165c8f49fc97?ixlib=rb-0.3.5&s=995930e5e5a391860e70cd6bd781546c&auto=format&fit=crop&w=1350&q=80);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #3E363F;
-  overflow: hidden;
-}
+
 #chat__chatbox {
   background: white;
   border-radius: 5px;
