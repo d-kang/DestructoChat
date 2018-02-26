@@ -7,13 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-const routes = require('./routes');
-
 app.use(express.static(path.join(__dirname, '../dist')));
 
-io.on('connection', routes);
+require('./routes')(io);
 
 module.exports = {
   server,
-  io,
 };
