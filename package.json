@@ -2,15 +2,15 @@
   "name": "DestructoChat",
   "version": "1.0.0",
   "description": "Self-Destructing Message App (MERN)",
-  "main": "index.js",
+  "main": "server/server.js",
   "engines": {
     "node": "8.9.2"
   },
   "scripts": {
     "build": "webpack -p --display-error-details --colors",
-    "start": "NODE_ENV=production node server/index.js",
+    "start": "NODE_ENV=production node server/server.js",
     "node:dev": "npm run node:watch & npm run node:webpack:watch",
-    "node:watch": "nodemon server/index.js",
+    "node:watch": "nodemon server/server.js",
     "node:webpack:watch": "webpack -wd",
     "webpack:dev": "NODE_ENV=development webpack-dev-server",
     "postinstall": "npm run build",
