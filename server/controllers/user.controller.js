@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const User = mongoose.model('User');
+const User = require('../models/user.model')(mongoose);
 
 exports.signup = (username, socket) => {
   const user = new User({ username });
