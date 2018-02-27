@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
+import Autoscroll from 'autoscroll-react';
 import PropTypes from 'prop-types';
 import MsgItem from './MsgItem';
-import ChatScroll from './ChatScroll';
 
 class MsgList extends PureComponent {
   render() {
@@ -21,4 +21,4 @@ MsgList.propTypes = {
   username: PropTypes.string.isRequired,
 };
 
-export default ChatScroll(MsgList);
+export default Autoscroll(MsgList);
