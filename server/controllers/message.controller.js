@@ -1,6 +1,28 @@
 const mongoose = require('mongoose');
 
-const Message = mongoose.model('Message');
+const Message = require('../models/message.model')(mongoose);
+
+exports.initializeDestructTimeouts = socket => {
+  Message.find({}, (err, data) => {
+    if (err) {
+      console.error('error', err);
+    }
+  })
+    .then(res => {
+      res.forEach(({ selfDestruct, destructAt, messageId }) => {
+        if (selfDestruct === true) {
+          const timeTillDestruct = destructAt - Date.now();
+          setTimeout(
+            () => exports.deleteMessage({ messageId }, socket),
+            timeTillDestruct
+          );
+        }
+      });
+      return res;
+    })
+    .then(res => exports.updateMessages(null, socket))
+    .catch(e => console.error('e', e));
+};
 
 exports.loadMessages = socket => {
   Message.find({}, (err, data) => {
@@ -19,7 +41,6 @@ exports.loadMessages = socket => {
       });
     });
 };
-
 exports.deleteMessage = (data, socket) => {
   Message.findOneAndRemove(data)
     .then(message => {
@@ -27,7 +48,6 @@ exports.deleteMessage = (data, socket) => {
     })
     .catch(e => console.error(e));
 };
-
 exports.addMessage = (message, socket) => {
   const msg = new Message(message);
   msg
@@ -45,17 +65,16 @@ exports.addMessage = (message, socket) => {
     .then(res => exports.updateMessages(res, socket))
     .catch(e => console.error('e', e));
 };
-
-exports.updateMessages = (d, socket) => {
+exports.updateMessages = (data, socket) => {
   Message.find({}, err => {
     if (err) {
       console.error('error', err);
     }
   })
     .sort({ createdAt: 1 })
-    .then(data => {
-      socket.emit('load messages', data);
-      socket.broadcast.emit('load messages', data);
+    .then(d => {
+      socket.emit('load messages', d);
+      socket.broadcast.emit('load messages', d);
     })
     .catch(err => {
       console.error('err', err);
